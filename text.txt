@@ -1,7 +1,10 @@
-Ligne 1 : Ceci est une ligne de test.
-Ligne 2 : Une autre ligne pour tester la lecture.
-Ligne 3 : Le projet get_next_line est en cours.
-Ligne 4 : On continue avec du texte pour simuler un fichier.
+Ligne 1 : Ceci est
+ une ligne de test.
+Ligne 2 : Une autre lig ne pour test
+er la lecture.
+Ligne 3 : Le prnojet get_next_line est en cours.
+Ligne 4 : On 
+continue avec du texte pour simuler un fichier.
 Ligne 5 : Chaque ligne est séparée par un retour à la ligne.
 Ligne 6 : Tu peux utiliser ce fichier pour vérifier ton code.
 Ligne 7 : Est-ce que tu gères bien les \n à la fin ?

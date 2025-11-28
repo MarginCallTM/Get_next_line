@@ -6,7 +6,7 @@
 /*   By: adriencombier <adriencombier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 11:21:26 by acombier          #+#    #+#             */
-/*   Updated: 2025/11/28 09:18:32 by adriencombi      ###   ########.fr       */
+/*   Updated: 2025/11/28 11:12:58 by adriencombi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ size_t	ft_strlen(const char *str)
 	}
 	return (i);
 }
-
-
 
 
 static void	ft_strcpyjoin(char *dest, const char *s1, const char *s2)
@@ -49,13 +47,21 @@ static void	ft_strcpyjoin(char *dest, const char *s1, const char *s2)
 	}
 	dest[i + j] = '\0';	
 }
-char	*ft_strjoin(char const *s1, char const *s2)
+
+char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	slen1;
 	size_t	slen2;
 	char	*joined;
 
-	if(!s1 || !s2)
+	if (!s1)
+	{
+    	s1 = malloc(1);
+    	if (!s1)
+      	  return NULL;
+   	 	s1[0] = '\0';
+	}
+	if(!s2)
 		return (NULL);
 	slen1 = ft_strlen(s1);
 	slen2 = ft_strlen(s2);
@@ -82,6 +88,7 @@ char	*ft_strchr(const char *s, int c)
 		return((char *)(s + i));
 	return (NULL);
 }
+
 static	void	ft_strncpy_substr(char *dest, const char *src, size_t start, size_t len)
 {
 	size_t	i;
@@ -94,6 +101,7 @@ static	void	ft_strncpy_substr(char *dest, const char *src, size_t start, size_t 
 	}
 	dest[i] = '\0';
 }
+
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -121,7 +129,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 }
 
 
-int main(void)
+/*int main(void)
 {
 	printf("%zu", ft_strlen("Hello Earth!"));
 	char	s1[] = "\nouioui ";
@@ -141,4 +149,4 @@ int main(void)
 	printf("%s", ft_substr(s4, 0, 12));
 
 	return(0);
-}
+}*/
