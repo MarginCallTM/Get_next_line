@@ -1,0 +1,101 @@
+Ligne 1 : Ceci est une ligne de test.
+Ligne 2 : Une autre ligne pour tester la lecture.
+Ligne 3 : Le projet get_next_line est en cours.
+Ligne 4 : On continue avec du texte pour simuler un fichier.
+Ligne 5 : Chaque ligne est séparée par un retour à la ligne.
+Ligne 6 : Tu peux utiliser ce fichier pour vérifier ton code.
+Ligne 7 : Est-ce que tu gères bien les \n à la fin ?
+Ligne 8 : Et que se passe-t-il si la dernière ligne n'en a pas ?
+Ligne 9 : C'est important pour la gestion de la fin du fichier.
+Ligne 10 : Le buffer va devoir couper certaines lignes en deux.
+Ligne 11 : Et le stash va les recoller correctement.
+Ligne 12 : Si tout va bien, chaque ligne doit s'afficher à part.
+Ligne 13 : Test de longueur variable pour chaque ligne.
+Ligne 14 : Tu peux jouer avec BUFFER_SIZE pour forcer la découpe.
+Ligne 15 : Par exemple BUFFER_SIZE=1 pour du ultra détaillé.
+Ligne 16 : Ou BUFFER_SIZE=1000 pour lire en une fois.
+Ligne 17 : La mémoire doit être bien libérée à chaque fois.
+Ligne 18 : Sinon tu auras des leaks et ce sera un 0 à l'éval.
+Ligne 19 : Le programme doit aussi gérer les erreurs de read().
+Ligne 20 : Par exemple un fd invalide doit retourner NULL.
+Ligne 21 : Voici une autre ligne normale.
+Ligne 22 : Et encore une autre.
+Ligne 23 : Tu progresses bien.
+Ligne 24 : N'oublie pas de tester les cas aux limites.
+Ligne 25 : Comme un fichier vide.
+Ligne 26 : Ou un fichier avec une seule très longue ligne.
+Ligne 27 : Cela mettra ta gestion de stash à l'épreuve.
+Ligne 28 : On arrive bientôt à la moitié.
+Ligne 29 : Continue comme ça.
+Ligne 30 : Tu vas bientôt comprendre tous les détails.
+Ligne 31 : Petit à petit.
+Ligne 32 : Tu construis ton raisonnement.
+Ligne 33 : Et tu t'appropries l'algorithme.
+Ligne 34 : C'est comme un puzzle.
+Ligne 35 : Ligne après ligne.
+Ligne 36 : Buffer après buffer.
+Ligne 37 : Tu reconstruis les lignes originales.
+Ligne 38 : Et tu t’assures de bien tout libérer.
+Ligne 39 : Sinon, bonjour les memory leaks.
+Ligne 40 : As-tu testé avec Valgrind ?
+Ligne 41 : Ou l’outil leaks de Mac ?
+Ligne 42 : Il faut bien penser à `free()` tout ce qui est `malloc()`.
+Ligne 43 : Surtout le buffer et les substrings.
+Ligne 44 : Tu peux créer un test simple qui affiche chaque ligne.
+Ligne 45 : Et vérifier que ça correspond au fichier.
+Ligne 46 : Tu peux aussi comparer avec `fgets()`.
+Ligne 47 : Bien que ce ne soit pas autorisé ici.
+Ligne 48 : Tu devrais aussi t'assurer de ne jamais dépasser les limites.
+Ligne 49 : Ne pas lire au-delà du buffer alloué.
+Ligne 50 : Et toujours mettre `\0` à la fin des strings.
+Ligne 51 : Sinon, printf va partir en vrille.
+Ligne 52 : Et c’est pas ce que tu veux.
+Ligne 53 : Encore quelques lignes.
+Ligne 54 : Et tu pourras créer ton fichier test.
+Ligne 55 : Tu peux le faire avec `echo`, `cat` ou directement depuis ton code.
+Ligne 56 : Ou encore copier-coller tout ça dans un fichier `test.txt`.
+Ligne 57 : Et ensuite l’ouvrir avec `open("test.txt", O_RDONLY);`
+Ligne 58 : Et donner le fd à `get_next_line`.
+Ligne 59 : Puis afficher chaque ligne lue.
+Ligne 60 : Et vérifier qu’on lit bien ligne par ligne.
+Ligne 61 : Tu peux aussi tester la lecture sur `stdin`.
+Ligne 62 : Tape directement dans le terminal.
+Ligne 63 : Et vois si la fonction lit jusqu’au `\n`.
+Ligne 64 : Quand tu appuies sur Entrée.
+Ligne 65 : Tu peux même faire des pipes !
+Ligne 66 : `cat test.txt | ./a.out`
+Ligne 67 : Ton code doit gérer les flux de lecture.
+Ligne 68 : Et pas uniquement les fichiers normaux.
+Ligne 69 : On continue de remplir ce fichier.
+Ligne 70 : Pour t’approcher des 100 lignes.
+Ligne 71 : C’est utile aussi pour stresser le buffer.
+Ligne 72 : Et vérifier ta logique de découpe.
+Ligne 73 : Tu peux même ajouter des lignes vides.
+Ligne 74 :
+Ligne 75 : Voilà une ligne après un saut vide.
+Ligne 76 : Et encore une.
+Ligne 77 : Presque fini.
+Ligne 78 : Courage.
+Ligne 79 : Tu y es presque.
+Ligne 80 : Les dernières lignes arrivent.
+Ligne 81 : En voilà une.
+Ligne 82 : Et une autre.
+Ligne 83 : Encore une.
+Ligne 84 : Tu peux le faire.
+Ligne 85 : Tu vas maîtriser le C.
+Ligne 86 : Et comprendre la mémoire.
+Ligne 87 : Et les pointeurs.
+Ligne 88 : Et le debug.
+Ligne 89 : Et les lectures.
+Ligne 90 : Et les chaînes de caractères.
+Ligne 91 : Et les erreurs de segmentation.
+Ligne 92 : Et le Valgrind.
+Ligne 93 : Et l'allocation dynamique.
+Ligne 94 : Tu progresses.
+Ligne 95 : Continue à coder.
+Ligne 96 : Continue à tester.
+Ligne 97 : Continue à te tromper (et à corriger).
+Ligne 98 : C’est comme ça qu’on apprend.
+Ligne 99 : Et maintenant…
+Ligne 100 : Fin du test.
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acombier <acombier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adriencombier <adriencombier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 11:21:18 by acombier          #+#    #+#             */
-/*   Updated: 2025/11/25 12:15:47 by acombier         ###   ########.fr       */
+/*   Updated: 2025/11/28 08:55:46 by adriencombi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include <unistd.h>
 
 char	*get_next_line(int fd);
-char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strjoin(const char *s1, const char *s2);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
