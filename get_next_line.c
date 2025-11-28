@@ -6,7 +6,7 @@
 /*   By: adriencombier <adriencombier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 11:21:24 by acombier          #+#    #+#             */
-/*   Updated: 2025/11/28 11:16:03 by adriencombi      ###   ########.fr       */
+/*   Updated: 2025/11/28 12:16:16 by adriencombi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char    *get_next_line(int fd)
 {
     static char *stash;
     char    *line;
-    char    *buffer;
+    char static    *buffer;
     int bytes_read;
     char    *tmp; 
 
@@ -72,7 +72,7 @@ char    *get_next_line(int fd)
     {
         bytes_read = read(fd, buffer, BUFFER_SIZE);
         if(bytes_read < 0)
-        {
+        { 
             free(buffer);
             return (NULL);
         }

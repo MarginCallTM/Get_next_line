@@ -6,7 +6,7 @@
 /*   By: adriencombier <adriencombier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 11:21:26 by acombier          #+#    #+#             */
-/*   Updated: 2025/11/28 11:12:58 by adriencombi      ###   ########.fr       */
+/*   Updated: 2025/11/28 12:39:19 by adriencombi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,50 +26,32 @@ size_t	ft_strlen(const char *str)
 }
 
 
-static void	ft_strcpyjoin(char *dest, const char *s1, const char *s2)
+char	*ft_strjoin(char *left_str, char *buff)
 {
 	size_t	i;
 	size_t	j;
+	char	*str;
 
-	i = 0;
-	j = 0;
-
-	while(s1[i])
+	if (!left_str)
 	{
-		dest[i] = s1[i];
-		i++;
+		left_str = (char *)malloc(1 * sizeof(char));
+		left_str[0] = '\0';
 	}
-	j = 0;
-	while(s2[j])
-	{
-		dest[i + j] = s2[j];
-		j++;
-	}
-	dest[i + j] = '\0';	
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	size_t	slen1;
-	size_t	slen2;
-	char	*joined;
-
-	if (!s1)
-	{
-    	s1 = malloc(1);
-    	if (!s1)
-      	  return NULL;
-   	 	s1[0] = '\0';
-	}
-	if(!s2)
+	if (!left_str || !buff)
 		return (NULL);
-	slen1 = ft_strlen(s1);
-	slen2 = ft_strlen(s2);
-	joined = malloc(slen1 + slen2 + 1);
-	if(!joined)
-		return(NULL);
-	ft_strcpyjoin(joined, s1, s2);
-	return (joined);
+	str = malloc(sizeof(char) * ((ft_strlen(left_str) + ft_strlen(buff)) + 1));
+	if (str == NULL)
+		return (NULL);
+	i = -1;
+	j = 0;
+	if (left_str)
+		while (left_str[++i] != '\0')
+			str[i] = left_str[i];
+	while (buff[j] != '\0')
+		str[i++] = buff[j++];
+	str[ft_strlen(left_str) + ft_strlen(buff)] = '\0';
+	free(left_str);
+	return (str);
 }
 
 
@@ -89,47 +71,53 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-static	void	ft_strncpy_substr(char *dest, const char *src, size_t start, size_t len)
-{
-	size_t	i;
 
+char	*ft_strdup(const char *s)
+{
+	char	*dup;
+	size_t	i;
+	
 	i = 0;
-	while(i < len)
+
+	dup = malloc(ft_strlen(s) + 1);
+	if (!dup)
+		return (NULL);
+	while (s[i])
 	{
-		dest[i] = src[start + i];
+		dup[i] = s[i];
 		i++;
 	}
-	dest[i] = '\0';
+	dup[i] = '\0';
+	return (dup);
 }
+
 
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*substr;
-	size_t	slen;
+	char	*sub;
+	size_t	i;
 
-	if(!s)
-		return(NULL);
-	slen = ft_strlen(s);
-	if(start >= slen)
-	{
-		substr = malloc(1);
-		if(!substr)
-			return(NULL);
-		substr[0] = '\0';
-		return (substr);
-	}
-	if((slen - start) < len)
-		len = slen - start;
-	substr = malloc(len + 1);
-	if(!substr)
+	if (!s || start >= ft_strlen(s))
+		return (ft_strdup(""));
+	if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	sub = malloc(len + 1);
+	if (!sub)
 		return (NULL);
-	ft_strncpy_substr(substr, s, start, len);
-	return(substr);
+	i = 0;
+	while (i < len)
+	{
+		sub[i] = s[start + i];
+		i++;
+	}
+	sub[i] = '\0';
+	return (sub);
 }
 
 
-/*int main(void)
+
+int main(void)
 {
 	printf("%zu", ft_strlen("Hello Earth!"));
 	char	s1[] = "\nouioui ";
@@ -149,4 +137,4 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	printf("%s", ft_substr(s4, 0, 12));
 
 	return(0);
-}*/
+}
