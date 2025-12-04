@@ -5,132 +5,133 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: acombier <acombier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/25 11:21:26 by acombier          #+#    #+#             */
-/*   Updated: 2025/12/02 10:30:13 by acombier         ###   ########.fr       */
+/*   Created: 2025/12/04 11:14:51 by acombier          #+#    #+#             */
+/*   Updated: 2025/12/04 16:27:26 by acombier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "get_next_line.h"
+#include "get_next_line.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;
-
 	i = 0;
-	while (str[i])
+	
+	while(str[i])
 	{
 		i++;
 	}
+	
 	return (i);
 }
 
-char	*ft_strjoin(char *stash, char *buff)
+char	*ft_strdup(const char *src)
 {
-	size_t	i;
-	size_t	j;
-	size_t	total_len;
-	char	*joined;
+	int	i;
+	char	*dest;
 	
 	i = 0;
-	if(!stash || !buff)
+	if(!src)
 		return (NULL);
-	total_len = ft_strlen(stash) + ft_strlen(buff);
-	joined = malloc(total_len + 1);
-	if(!joined)
-		return (NULL);
-	while(stash[i])
+	while(src[i])
 	{
-		joined[i] = stash[i];
 		i++;
 	}
-	j = 0;
-	while(buff[j])
+	dest = malloc(sizeof(char) * (i + 1));
+	i = 0;
+	while(src[i])
 	{
-		joined[i + j] = buff[j];
-		j++;
+		dest[i] = src[i];
+		i++;
 	}
-	joined[i + j] = '\0';
-	return(joined);
+	dest[i] = '\0';
+	return (dest);
 }
 
-char	*ft_strchr(const char *s, int c)
+static char	*ft_strchr(char *str, int c)
 {
-	size_t	i;
-
+	unsigned int	i;
 	i = 0;
-	while (s[i])
+
+	while(str[i])
 	{
-		if (s[i] == (char)c)
-			return ((char *)(s));
+		if(str[i] == (char)c)
+		{
+			return ((char *)(&str[i]));
+		}
 		i++;
 	}
-	if ((char)c == '\0')
-		return ((char *)(s));
+	if(str[i] == (char)c)
+		return ((char *) &str[i]);
 	return (NULL);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*dup;
 	size_t	i;
+	size_t	j;
+	size_t	slen1;
+	size_t  slen2;
+
+	char *joined;
 
 	i = 0;
-	dup = malloc(ft_strlen(s) + 1);
-	if (!dup)
+	j = 0;
+	
+	slen1 = ft_strlen(s1);
+	slen2 = ft_strlen(s2);
+
+	joined = malloc((slen1 + slen2) + 1);
+	if(!joined)
 		return (NULL);
-	while (s[i])
+	while(s1[i])
 	{
-		dup[i] = s[i];
+		joined[i] = s1[i];
 		i++;
 	}
-	dup[i] = '\0';
-	return (dup);
+	while(s2[j])
+	{
+		joined[i + j] = s2[j];
+		j++;
+	}
+	joined[i + j] = '\0';
+	return (joined);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
-	char	*sub;
 	size_t	i;
+	char	*line;
 
-	if (!s || start >= ft_strlen(s))
-		return (ft_strdup(""));
-	if (len > ft_strlen(s + start))
+	if(!s)
+		return (NULL);
+	if(start > ft_strlen(s))
+	{
+		return (malloc(1));
+	}
+	if(len > ft_strlen(s + start))
 		len = ft_strlen(s + start);
-	sub = malloc(len + 1);
-	if (!sub)
+	line = malloc((len + 1) * sizeof(char));
+	if(!line)
 		return (NULL);
 	i = 0;
-	while (i < len)
+	while(i < len)
 	{
-		sub[i] = s[start + i];
+		line[i] = s[start + i];
 		i++;
 	}
-	sub[i] = '\0';
-	return (sub);
+	line[i] = '\0';
+	
+	return (line);
+	
 }
 
-int	main(void)
+int main(void)
 {
-	//printf("%zu", ft_strlen("Hello Earth!"));
-	char s1[] = "ouioui ";
-	char s2[] = "Baguette\n";
-
-	printf("%s", ft_strjoin(s1, s2));
-
-	// int c = '\n';
-	// char s3[] = "Petit Honey\n";
-
-	// char s4[] = "Les saucisses sont cuites!\n";
-	// size_t len = 13;
-
-	// ft_strjoin(s1, s2);
-	//ft_strchr(s3, c);
-
-	// printf("%s", ft_strjoin(s1, s2));
-	// printf("%s", ft_strchr(s3, c));
-	// printf("%s", ft_substr(s4, 0, 12));
-
-	return (0);
+	char buff[] = "ABCDEF\nGHIJ\n";
+	
+	printf("%s", ft_substr(buff, ft_strchr(buff, '\n'), 13));
+	
 }

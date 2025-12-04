@@ -1,10 +1,7 @@
-Ligne 1 : Ceci est
- une ligne de test.
-Ligne 2 : Une autre lig ne pour test
-er la lecture.
+Ligne 1 : Ceci est une ligne de test.
+Ligne 2 : Une autre lig ne pour tester la lecture.
 Ligne 3 : Le prnojet get_next_line est en cours.
-Ligne 4 : On 
-continue avec du texte pour simuler un fichier.
+Ligne 4 : On continue avec du texte pour simuler un fichier.
 Ligne 5 : Chaque ligne est séparée par un retour à la ligne.
 Ligne 6 : Tu peux utiliser ce fichier pour vérifier ton code.
 Ligne 7 : Est-ce que tu gères bien les \n à la fin ?
@@ -101,4 +98,3 @@ Ligne 97 : Continue à te tromper (et à corriger).
 Ligne 98 : C’est comme ça qu’on apprend.
 Ligne 99 : Et maintenant…
 Ligne 100 : Fin du test.
-

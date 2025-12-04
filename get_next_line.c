@@ -3,86 +3,87 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adriencombier <adriencombier@student.42    +#+  +:+       +#+        */
+/*   By: acombier <acombier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/25 11:21:24 by acombier          #+#    #+#             */
-/*   Updated: 2025/11/28 12:16:16 by adriencombi      ###   ########.fr       */
+/*   Created: 2025/12/04 11:14:20 by acombier          #+#    #+#             */
+/*   Updated: 2025/12/04 16:15:26 by acombier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char *extract_line(char *stash)
-{
-    int     i;
-    char    *line;
 
-    if(!stash || stash[0] == '\0')
-        return (NULL);
-    i = 0;
-    while(stash[i] && stash[i] != '\n')
-    {
-        i++;
-    }
-    if(stash[i] == '\n')
-        i++;
-    line = ft_substr(stash, 0 , i);
-    return (line);
+static char	*ft_extract_line(char *line_buffer)
+{
+	char	*line;
+	ssize_t	i;
+	
+	i = 0;
+	while(line_buffer[i] != '\n' || line_buffer[i] != '\0')
+	{
+		i++;
+	}
+	if(line_buffer[i] == '\0' || line_buffer[1] == '\0')
+	{
+		return (NULL);
+	}
+	line = ft_substr(line_buffer, i + 1, ft_strlen(line_buffer) - i);
+	if(*line == 0)
+	{
+		line = NULL;
+	}
+	line_buffer[i + 1] = '\0';
+	return (line);
 }
 
-static char *update_stash(char *stash)
+char	*ft_clean_buffer(char *line_buffer)
 {
-    int     i;
-    char    *new_stash;
-
-    if(!stash)
-        return (NULL);
-    i = 0;
-    while(stash[i] && stash[i] != '\n')
-    {
-        i++;
-    }
-    if(!stash[i])
-    {
-        free(stash);
-        return (NULL);
-    }
-    i++;
-    new_stash = ft_substr(stash, i, ft_strlen(stash) - i);
-    free (stash);
-    return (new_stash);
+	
 }
 
-
-char    *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-    static char *stash;
-    char    *line;
-    char static    *buffer;
-    int bytes_read;
-    char    *tmp; 
+	static char buffer[BUFFER_SIZE + 1];
+	char	*line;
+	ssize_t	bytes_read;
 
-    if(fd < 0 || BUFFER_SIZE <= 0)
-        return (NULL);
-    buffer = malloc(BUFFER_SIZE + 1);
-    if(!buffer)
-        return (NULL);
-    bytes_read = 1;
-    while(stash == NULL || (!ft_strchr(stash, '\n') && bytes_read > 0))
-    {
-        bytes_read = read(fd, buffer, BUFFER_SIZE);
-        if(bytes_read < 0)
-        { 
-            free(buffer);
-            return (NULL);
-        }
-        buffer[bytes_read] = '\0';
-        tmp = stash;
-        stash = ft_strjoin(stash, buffer);
-        free(tmp);
-    }
-    free(buffer);
-    line = extract_line(stash);
-    stash = update_stash(stash);
-    return (line);
+	bytes_read = 1;
+	line = ft_strdup(buffer);
+	while(bytes_read > 0 && !ft_strchr(buffer, '\n'))
+	{
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if(bytes_read == -1)
+			//FREE LINE + RESET BUFFER
+			return (NULL);
+		buffer[bytes_read] = '\0';
+		if(!line)
+			line = ft_strdup("");
+		line = ft_strjoin(line, buffer);
+	}
+	line = ft_extract_line(line);
+	ft_clean_buffer(buffer);
+	
+	return (line);
+	
+	
+}
+
+int main(void)
+{
+	int	fd;
+	char	*line;
+	
+	fd = open("text.txt", O_RDONLY);
+	if(fd == -1)
+	{
+		printf("Erreur de lecture de fichier");
+		return (1);
+	}
+	while(line = get_next_line((fd) != NULL))
+	{
+		printf("%s", line);
+		free(line);
+	}
+	close(fd);
+	return (0);
 }
