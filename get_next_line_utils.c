@@ -6,7 +6,7 @@
 /*   By: acombier <acombier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 11:14:51 by acombier          #+#    #+#             */
-/*   Updated: 2025/12/04 16:27:26 by acombier         ###   ########.fr       */
+/*   Updated: 2025/12/05 14:52:56 by acombier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*ft_strdup(const char *src)
 	return (dest);
 }
 
-static char	*ft_strchr(char *str, int c)
+char	*ft_strchr(char *str, int c)
 {
 	unsigned int	i;
 	i = 0;
@@ -85,7 +85,10 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	joined = malloc((slen1 + slen2) + 1);
 	if(!joined)
+	{
+		free(s1);
 		return (NULL);
+	}
 	while(s1[i])
 	{
 		joined[i] = s1[i];
@@ -97,41 +100,35 @@ char	*ft_strjoin(char *s1, char *s2)
 		j++;
 	}
 	joined[i + j] = '\0';
+	
+	free(s1);
 	return (joined);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
-{
-	size_t	i;
-	char	*line;
+// char	*ft_substr(char *s, unsigned int start, size_t len)
+// {
+// 	size_t	i;
+// 	char	*line;
 
-	if(!s)
-		return (NULL);
-	if(start > ft_strlen(s))
-	{
-		return (malloc(1));
-	}
-	if(len > ft_strlen(s + start))
-		len = ft_strlen(s + start);
-	line = malloc((len + 1) * sizeof(char));
-	if(!line)
-		return (NULL);
-	i = 0;
-	while(i < len)
-	{
-		line[i] = s[start + i];
-		i++;
-	}
-	line[i] = '\0';
+// 	if(!s)
+// 		return (NULL);
+// 	if(start > ft_strlen(s))
+// 	{
+// 		return (malloc(1));
+// 	}
+// 	if(len > ft_strlen(s + start))
+// 		len = ft_strlen(s + start);
+// 	line = malloc((len + 1) * sizeof(char));
+// 	if(!line)
+// 		return (NULL);
+// 	i = 0;
+// 	while(i < len)
+// 	{
+// 		line[i] = s[start + i];
+// 		i++;
+// 	}
+// 	line[i] = '\0';
 	
-	return (line);
+// 	return (line);
 	
-}
-
-int main(void)
-{
-	char buff[] = "ABCDEF\nGHIJ\n";
-	
-	printf("%s", ft_substr(buff, ft_strchr(buff, '\n'), 13));
-	
-}
+// }
