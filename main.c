@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acombier <acombier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adriencombier <adriencombier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 15:42:19 by qdescomb          #+#    #+#             */
-/*   Updated: 2025/12/05 15:51:34 by acombier         ###   ########.fr       */
+/*   Updated: 2025/12/06 15:23:35 by adriencombi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,12 @@ int main(void)
 {
 	int		fd;
 	char	*str;
-	int		i;
 
-	i = 0;
 	fd = open("text.txt", O_RDONLY);
 	if (fd < 0)
 		return (0);
 	str = get_next_line(fd);
 	free(str);
-	i++;
 
 	close(fd);
 	return (1);

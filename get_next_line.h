@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acombier <acombier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adriencombier <adriencombier@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 11:13:07 by acombier          #+#    #+#             */
-/*   Updated: 2025/12/05 15:12:38 by acombier         ###   ########.fr       */
+/*   Updated: 2025/12/16 12:46:17 by adriencombi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 #include <stdio.h>
 #include <fcntl.h>
 
+char	*ft_init_buffer_line(int fd, char *buffer);
+char	*ft_clean_buffer(char *buffer);
+char	*ft_extract_line(char *str);
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
 char 	*ft_strchr(char *str, int c);
