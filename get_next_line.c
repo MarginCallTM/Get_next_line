@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adriencombier <adriencombier@student.42    +#+  +:+       +#+        */
+/*   By: acombier <acombier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 15:56:24 by adriencombi       #+#    #+#             */
-/*   Updated: 2025/12/16 12:45:13 by adriencombi      ###   ########.fr       */
+/*   Updated: 2025/12/17 09:20:37 by acombier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-static char	*alloc_line_and_copy(const char *str, int len);
-static void	copy_remaining_buffer(char *buffer, int start);
 
 char	*get_next_line(int fd)
 {
@@ -24,7 +21,10 @@ char	*get_next_line(int fd)
 		return (NULL);
 	str = ft_init_buffer_line(fd, buffer);
 	if (!str)
+	{
+		buffer[0] = '\0';
 		return (NULL);
+	}
 	str = ft_extract_line(str);
 	ft_clean_buffer(buffer);
 	return (str);
@@ -49,7 +49,7 @@ char	*ft_extract_line(char *str)
 }
 
 
-static char	*alloc_line_and_copy(const char *str, int len)
+char	*alloc_line_and_copy(const char *str, int len)
 {
 	char	*line;
 	int		i = 0;
@@ -87,7 +87,7 @@ char	*ft_clean_buffer(char *buffer)
 	return (buffer);
 }
 
-static void	copy_remaining_buffer(char *buffer, int start)
+void	copy_remaining_buffer(char *buffer, int start)
 {
 	int	j = 0;
 
